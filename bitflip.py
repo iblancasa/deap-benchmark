@@ -40,7 +40,7 @@ def main():
         chromosome = creator.chromosome(random.getrandbits(1) for _ in range(length))
         indpb=1/length
         toolbox.register("mutate", tools.mutFlipBit, indpb=indpb)
-        print("deap-Onemax, " + str(length) +", "+ str(time_maxones( iterations, chromosome)))
+        print("deap-Bitflip, " + str(length) +", "+ str(time_maxones( iterations, chromosome)))
         length = length*2
 
 if __name__ == "__main__":

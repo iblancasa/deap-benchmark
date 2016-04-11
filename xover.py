@@ -40,7 +40,7 @@ def main():
         chromosome1 = creator.chromosome(random.getrandbits(1) for _ in range(length))
         chromosome2 = creator.chromosome(random.getrandbits(1) for _ in range(length))
 
-        print("deap-Onemax, " + str(length) +", "+ str(time_maxones( iterations, chromosome1,chromosome2)))
+        print("deap-Xover, " + str(length) +", "+ str(time_maxones( iterations, chromosome1,chromosome2)))
         length = length*2
 
 if __name__ == "__main__":
