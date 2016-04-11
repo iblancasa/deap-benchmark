@@ -37,7 +37,7 @@ def main():
     top_length = 32768
 
     while not length > top_length:
-        chromosome = creator.chromosome(random.uniform(0, 1) for _ in range(length))
+        chromosome = creator.chromosome(random.getrandbits(1) for _ in range(length))
         indpb=1/length
         toolbox.register("mutate", tools.mutFlipBit, indpb=indpb)
         print("deap-Onemax, " + str(length) +", "+ str(time_maxones( iterations, chromosome)))

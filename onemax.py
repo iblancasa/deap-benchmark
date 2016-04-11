@@ -19,7 +19,7 @@ def time_maxones(number, length):
     inicioTiempo = time.clock()
 
     for i in range(number):
-        best = creator.chromosome(random.uniform(0, 1) for _ in range(length))
+        best = creator.chromosome(random.getrandbits(1) for _ in range(length))
         toolbox.evaluate(best)
 
     return time.clock() - inicioTiempo
