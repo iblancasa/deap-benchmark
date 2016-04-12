@@ -7,7 +7,31 @@ To run this, install dependences:
 pip install -r requeriments.txt
 ```
 
-And runt each benchmark with:
+## Run benchmarks
+
+### Bitflip
 ```bash
-python [file]
+python bitflip.py [numpy/lists] [native]
 ```
+
+Arguments:
+ * [numpy/lists]: you have to select if run the benchmark using numpy arrays or Python lists.
+ * [native]: if you add this param, you will run the benchmark using native bitflip. Else, you will run a bitflip that only changes one bit.
+
+
+ ### Onemax
+ ```bash
+ python onemax.py [numpy]
+ ```
+
+Arguments:
+* [numpy]: if you run with this option, you will run the benchmark using numpy arrays. Else, you will use Python lists.
+
+
+### Xover
+```bash
+python xover.py [numpy]
+```
+
+Arguments:
+* [numpy]: if you run with this option, you will run the benchmark using numpy arrays. Else, you will use Python lists.
