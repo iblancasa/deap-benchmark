@@ -11,6 +11,12 @@ import sys
 toolbox = None;
 
 
+def bitFlip(chromosome):
+    mutation_point = random.randint(0,len(chromosome)-1)
+    mutie = chromosome.copy()
+    mutie[mutation_point] = not mutie[mutation_point]
+    return mutie
+
 def time_maxones(number, chromosome):
     global toolbox
     inicioTiempo = time.clock()
@@ -25,11 +31,16 @@ def main():
     global toolbox
     creator.create("fitness", base.Fitness, weights=(1.0,))
 
-    if len(sys.argv)>1 and sys.argv[1]=="numpy":
+    if sys.argv[1]=="numpy":
         creator.create("chromosome", numpy.ndarray, fitness=creator.fitness)
     else:
         creator.create("chromosome", list, fitness=creator.fitness)
     toolbox = base.Toolbox()
+
+    if len(sys.argv)>2 and sys.argv[2]=="native":
+        native = True
+    else:
+        native = False
 
 
     length = 16
@@ -39,7 +50,10 @@ def main():
     while not length > top_length:
         chromosome = creator.chromosome(random.getrandbits(1) for _ in range(length))
         indpb=1/length
-        toolbox.register("mutate", tools.mutFlipBit, indpb=indpb)
+        if native:
+            toolbox.register("mutate", tools.mutFlipBit, indpb=indpb)
+        else:
+            toolbox.register("mutate", bitFlip)
         print("deap-Bitflip, " + str(length) +", "+ str(time_maxones( iterations, chromosome)))
         length = length*2
 
