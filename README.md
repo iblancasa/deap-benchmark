@@ -4,14 +4,16 @@ This repository is to study [Deap library](https://github.com/deap/deap) in comp
 
 To run this, install dependences:
 ```bash
-pip install -r requeriments.txt
+pip install -r requirements.txt
 ```
+
+preffixed by `sudo` if needed. 
 
 ## Run benchmarks
 
 ### Bitflip
 ```bash
-python bitflip.py [numpy/lists] [native]
+python bitflip.py <numpy/lists> [native]
 ```
 
 Arguments:
