@@ -16,7 +16,7 @@ def bitFlip(chromosome):
     mutie[mutation_point] = not mutie[mutation_point]
     return mutie
 
-def time_maxones(toolbox, number, chromosome):
+def time_this(toolbox, number, chromosome):
     inicioTiempo = time.clock()
 
     for i in range(number):
@@ -28,10 +28,14 @@ def time_maxones(toolbox, number, chromosome):
 def main():
     creator.create("fitness", base.Fitness, weights=(1.0,))
 
+    if len(sys.argv) == 1:
+        sys.argv.append("numpy")
+
     if sys.argv[1]=="numpy":
         creator.create("chromosome", numpy.ndarray, fitness=creator.fitness)
     else:
         creator.create("chromosome", list, fitness=creator.fitness)
+        
     toolbox = base.Toolbox()
 
     if len(sys.argv)>2 and sys.argv[2]=="native":
@@ -51,7 +55,7 @@ def main():
             toolbox.register("mutate", tools.mutFlipBit, indpb=indpb)
         else:
             toolbox.register("mutate", bitFlip)
-        print("deap-Bitflip, " + str(length) +", "+ str(time_maxones(toolbox, iterations, chromosome)))
+        print("Python_DEAP_"+sys.argv[1]+"-BitVector, " + str(length) +", "+ str(time_this(toolbox, iterations, chromosome)))
         length = length*2
 
 if __name__ == "__main__":
