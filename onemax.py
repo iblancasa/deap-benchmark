@@ -8,14 +8,12 @@ from deap import tools
 import sys
 
 
-toolbox = None;
 
 def evalOneMax(chromosome):
     return sum(chromosome),
 
 
-def time_maxones(number, length):
-    global toolbox
+def time_maxones(toolbox, number, length):
     inicioTiempo = time.clock()
 
     for i in range(number):
@@ -26,7 +24,6 @@ def time_maxones(number, length):
 
 
 def main():
-    global toolbox
     creator.create("fitness", base.Fitness, weights=(1.0,))
 
     if len(sys.argv)>1 and sys.argv[1]=="numpy":
@@ -42,7 +39,7 @@ def main():
     top_length = 32768
 
     while not length > top_length:
-        print("deap-Onemax, " + str(length) +", "+ str(time_maxones( iterations, length)))
+        print("deap-Onemax, " + str(length) +", "+ str(time_maxones(toolbox, iterations, length)))
         length = length*2
 
 if __name__ == "__main__":

@@ -8,11 +8,8 @@ from deap import tools
 import sys
 
 
-toolbox = None;
 
-
-def time_maxones(number, chromosome1, chromosome2):
-    global toolbox
+def time_maxones(toolbox, number, chromosome1, chromosome2):
     inicioTiempo = time.clock()
 
     for i in range(number):
@@ -22,7 +19,6 @@ def time_maxones(number, chromosome1, chromosome2):
 
 
 def main():
-    global toolbox
     creator.create("fitness", base.Fitness, weights=(1.0,))
 
     if len(sys.argv)>1 and sys.argv[1]=="numpy":
@@ -40,7 +36,7 @@ def main():
         chromosome1 = creator.chromosome(random.getrandbits(1) for _ in range(length))
         chromosome2 = creator.chromosome(random.getrandbits(1) for _ in range(length))
 
-        print("deap-Xover, " + str(length) +", "+ str(time_maxones( iterations, chromosome1,chromosome2)))
+        print("deap-Xover, " + str(length) +", "+ str(time_maxones(toolbox, iterations, chromosome1,chromosome2)))
         length = length*2
 
 if __name__ == "__main__":

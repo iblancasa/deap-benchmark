@@ -8,7 +8,6 @@ from deap import tools
 import sys
 
 
-toolbox = None;
 
 
 def bitFlip(chromosome):
@@ -17,8 +16,7 @@ def bitFlip(chromosome):
     mutie[mutation_point] = not mutie[mutation_point]
     return mutie
 
-def time_maxones(number, chromosome):
-    global toolbox
+def time_maxones(toolbox, number, chromosome):
     inicioTiempo = time.clock()
 
     for i in range(number):
@@ -28,7 +26,6 @@ def time_maxones(number, chromosome):
 
 
 def main():
-    global toolbox
     creator.create("fitness", base.Fitness, weights=(1.0,))
 
     if sys.argv[1]=="numpy":
@@ -54,7 +51,7 @@ def main():
             toolbox.register("mutate", tools.mutFlipBit, indpb=indpb)
         else:
             toolbox.register("mutate", bitFlip)
-        print("deap-Bitflip, " + str(length) +", "+ str(time_maxones( iterations, chromosome)))
+        print("deap-Bitflip, " + str(length) +", "+ str(time_maxones(toolbox, iterations, chromosome)))
         length = length*2
 
 if __name__ == "__main__":
